@@ -5,11 +5,13 @@ from PIL import Image
 from datetime import datetime
 
 app = Flask(__name__)
+current_year = datetime.now().year
 
 
-@app.route('/', methods=['POST','GET'])
+@app.route('/', methods=['GET'])
 def index():
-    return render_template('index.html', curent_year=datetime.now().year)
+    return render_template('index.html', curent_year=current_year)
+    # TODO: conseguir que el año se visualice en la pagina index, además de en confirmacion
 
 
 @app.route('/login', methods=['POST', 'GET'])
@@ -35,10 +37,11 @@ def login():
         # Display the image
         Image.open(filename).show()
 
-        return render_template('confirmacion.html', filename=filename, current_year=datetime.now().year)
+        return render_template('confirmacion.html', filename=filename, current_year=current_year) 
+        # TODO: ¿qué le pasa a la ruta de la imagen? ¿Por qué no la coge?
     
     else:
-        return render_template('login.html', current_year=datetime.now().year)
+        return render_template('login.html', current_year=current_year)
 
 
 if __name__ == '__main__':
