@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    ¡Aqui tienes tu QR!
+{% endblock %}
+
+{% block main %}
+    <h1>Tu codigo QR</h1>
+    <img src="{{ filename }}" alt="A QR code">
+{% endblock %}

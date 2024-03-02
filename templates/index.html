@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Generacion de codigo QR
+{% endblock %}
+
+{% block main %}
+    <form action="/login" method="post">
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-50" id="url" name="url" placeholder="Introduce una URL" type="text">
+        </div>
+        <div class="mb-3">
+            <button class="btn btn-primary" type="submit">Generar codigo QR</button>
+        </div>
+    </form>
+{% endblock %}
