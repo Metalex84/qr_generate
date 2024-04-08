@@ -5,43 +5,47 @@ from PIL import Image
 from datetime import datetime
 
 app = Flask(__name__)
+
 current_year = datetime.now().year
 
-
-@app.route('/', methods=['GET'])
+@app.route('/')
 def index():
-    return render_template('index.html', curent_year=current_year)
-    # TODO: conseguir que el año se visualice en la pagina index, además de en confirmacion
+    return render_template('index.html', current_year=current_year)
 
 
-@app.route('/login', methods=['POST', 'GET'])
-def login():
+@app.route('/generate', methods=['POST', 'GET'])
+def generate():
     if request.method == 'POST':
             
         data = request.form.get('url')
-        # Generating the QR code
+
+        # Genero el código QR
         qr = qrcode.QRCode(version=1, box_size=7, border=1)
         qr.add_data(data)
         qr.make(fit=True)
 
-        # Creating the image itself
+        # Genero la imagen
         image = qr.make_image(fill="black", back_color="white")
 
-        # Building the filename
+        # Construyo el nombre del archivo según el datetime actual
         current_timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        path = current_timestamp + ".png"
+        source = current_timestamp + ".png"
 
-        # Saving the image
+        # Guardo la imagen (puede que no sea necesario)
+        # TODO: ¿funcionaria igual en Linux o Mac?
+        path = 'static/qrcodes/' + source
         image.save(path)
 
-        # Display the image
+        # Muestro la imagen (puede que no sea necesario)
         Image.open(path).show()
 
+        path = 'qrcodes/' + source
+
         return render_template('confirmacion.html', path=path, current_year=current_year) 
-        # TODO: ¿qué le pasa a la ruta de la imagen? ¿Por qué no la coge?
     
     else:
-        return render_template('login.html', current_year=current_year)
+        return render_template('index.html', current_year=current_year)
+
 
 
 if __name__ == '__main__':
