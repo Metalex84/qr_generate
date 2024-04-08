@@ -29,15 +29,15 @@ def login():
 
         # Building the filename
         current_timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        filename = current_timestamp + ".png"
+        path = current_timestamp + ".png"
 
         # Saving the image
-        image.save(filename)
+        image.save(path)
 
         # Display the image
-        Image.open(filename).show()
+        Image.open(path).show()
 
-        return render_template('confirmacion.html', filename=filename, current_year=current_year) 
+        return render_template('confirmacion.html', path=path, current_year=current_year) 
         # TODO: ¿qué le pasa a la ruta de la imagen? ¿Por qué no la coge?
     
     else:
