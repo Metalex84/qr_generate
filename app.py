@@ -31,13 +31,12 @@ def generate():
         current_timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         source = current_timestamp + ".png"
 
-        # Guardo la imagen (puede que no sea necesario)
-        # TODO: ¿funcionaria igual en Linux o Mac?
         path = 'static/qrcodes/' + source
-        image.save(path)
+        # TODO: Configurar guardado de imagen para que sea igual en Linux, Windows y Mac
+        # image.save(path)
 
-        # Muestro la imagen (puede que no sea necesario)
-        Image.open(path).show()
+        # TODO: Cuando eso esté listo, podré mostrar la imagen
+        # Image.open(path).show()
 
         path = 'qrcodes/' + source
 
