@@ -7,5 +7,5 @@
 {% block main %}
     <h1>Tu codigo QR</h1>
     <!-- TODO: hacer que la imagen se vea. ¿Qué le pasa a la ruta? -->
-    <img src="../../{{ filename }}" alt="A QR code">
+    <img src="{{ url_for('static', filename='qrcodes/{{ path }}')}}" alt="A QR code">
 {% endblock %}
